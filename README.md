@@ -99,7 +99,7 @@ CSRFs are typically conducted using malicious social engineering, such as an ema
 
 ## API SECURITY BEST PRACTICES
 
-### 1.Authentication and Authorization
+### :+1: 1.Authentication and Authorization
 
 Determining the identity of an end user. In case your API does not have an Authorization/Authentication mechanism, it might lead to misuse of your API, loading the servers and the API itself, making it less responsive to others.
 
@@ -112,7 +112,7 @@ Not all of these are valid choices for every single resource collection, user, o
 For example, if you have an RESTful API for a library, it's not okay to allow anonymous users to DELETE book catalog entries, but it's fine for them to GET a book catalog entry. On the other hand, for the librarian, both of these are valid uses.
 
 
-**1.2 Implement CORS **
+**1.2 Implement CORS**
 
 Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.[1] A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.[2] Certain "cross-domain" requests, notably Ajax requests, are forbidden by default by the same-origin security policy.
 
@@ -140,6 +140,22 @@ For resources exposed by RESTful web services, it's important to make sure any P
 
 CSRF is easily achieved even using random tokens if any XSS exists within your application, so please make sure you understand how to prevent XSS.
 
+
+### 2. Input Validation
+
+Validating the end user-supplied data before processing is important, as this can lead to different problems. Validation comes under different categories:
+
+- **Secure Parsing** – Input messages should be parsed securely and need to ensure that the parser is not vulnerable to attacks such as XEE (XML External Entity) if parsing XML, or any similar attacks.
+
+- **Strong Typing** – If the allowed list of values are of strong type (e.g., number, boolean, etc.), then it is difficult to perform most of the attacks.
+
+- **Validate Incoming Content Types** – When the client submits data, either with POST or PUT, it adds a Content-Type header (e.g., application/xml or application/json). The server should verify whether the incoming data and Content-Type header are of the same type. If either of these are not of the same type, lack a Content-Type header, or have an unexpected header, then the content should be rejected with a 406 (Not Acceptable) response.
+
+-**Validate Response Types** – While making a request to the REST API, the client adds the Accept header, which holds the preferred order of acceptable content types as a response from the API. The server should reject the request with a 406 (Not Acceptable) response, if the Accept header does not contain allowable content types.
+
+-**XML Input Validation** – APIs based on XML should ensure that they are protected against attacks such as XEE (XML External Entity), XML signature wrapping, etc., by using secure XML parsing.
+
+-**URL Validations** – APIs use input from HTTP requests to determine the response. Attackers can attack any part of an HTTP request (e.g.,  URL, Query String, headers, etc.), and HTTP requests should be validated against any tampering.
 
 
 
