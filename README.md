@@ -20,9 +20,11 @@ APIs often self-document information, such as their implementation and internal 
 7. API INJECTIONS (XSS AND SQLI) 
 
 
-**DATA PROTECTION :** 
+### DATA PROTECTION 
 
 A RESTful API is the way in which a given service can present value to the world. As a result, protection of the data provided via RESTful endpoints should always be a high priority. You have to define clear access rights, especially for methods like DELETE (deletes a resource) and PUT (updates a resource). Those methods must be accessed by authenticated users only, and for each such call, an audit must be saved.
+
+Prevention : 
 
 
 **MAN IN THE MIDDLE (MITM)**
