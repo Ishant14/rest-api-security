@@ -10,14 +10,15 @@ Additionally, Internet of Things (IoT) applications and devices use APIs to gath
 
 ## API SECURITY THREATS
 
-1) Data Protection
-3) MITM (Man in the middle)
-4) Anti farming 
-5) DOS attack 
-6) Harming the data on the network(Transport Layer) 
-7) API INJECTIONS (XSS AND SQLI) 
-
 APIs often self-document information, such as their implementation and internal structure, which can be used as intelligence for a cyber-attack. Additional vulnerabilities, such as weak authentication, lack of encryption, business logic flaws and insecure endpoints make APIs vulnerable to the attacks outlined below.
+
+1. Data Protection
+3. MITM (Man in the middle)
+4. Anti farming 
+5. DOS attack 
+6. Harming the data on the network(Transport Layer) 
+7. API INJECTIONS (XSS AND SQLI) 
+
 
 **DATA PROTECTION :** 
 
