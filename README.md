@@ -24,8 +24,10 @@ APIs often self-document information, such as their implementation and internal 
 
 A RESTful API is the way in which a given service can present value to the world. As a result, protection of the data provided via RESTful endpoints should always be a high priority. You have to define clear access rights, especially for methods like DELETE (deletes a resource) and PUT (updates a resource). Those methods must be accessed by authenticated users only, and for each such call, an audit must be saved.
 
-Prevention : 
+**Prevention:** Authentication and Authorisaion are the first basic step to be taken to prevent data.
 
+- ```Authentication``` is used to identify the end user reliably.
+- ```Authorization``` is used to identify resources that an authenticated user can access
 
 **MAN IN THE MIDDLE (MITM)**
 
