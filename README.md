@@ -141,7 +141,7 @@ For resources exposed by RESTful web services, it's important to make sure any P
 CSRF is easily achieved even using random tokens if any XSS exists within your application, so please make sure you understand how to prevent XSS.
 
 
-### 2. Input Validation
+### :+1: 2. Input Validation
 
 Validating the end user-supplied data before processing is important, as this can lead to different problems. Validation comes under different categories:
 
@@ -151,11 +151,11 @@ Validating the end user-supplied data before processing is important, as this ca
 
 - **Validate Incoming Content Types** – When the client submits data, either with POST or PUT, it adds a Content-Type header (e.g., application/xml or application/json). The server should verify whether the incoming data and Content-Type header are of the same type. If either of these are not of the same type, lack a Content-Type header, or have an unexpected header, then the content should be rejected with a 406 (Not Acceptable) response.
 
--**Validate Response Types** – While making a request to the REST API, the client adds the Accept header, which holds the preferred order of acceptable content types as a response from the API. The server should reject the request with a 406 (Not Acceptable) response, if the Accept header does not contain allowable content types.
+- **Validate Response Types** – While making a request to the REST API, the client adds the Accept header, which holds the preferred order of acceptable content types as a response from the API. The server should reject the request with a 406 (Not Acceptable) response, if the Accept header does not contain allowable content types.
 
--**XML Input Validation** – APIs based on XML should ensure that they are protected against attacks such as XEE (XML External Entity), XML signature wrapping, etc., by using secure XML parsing.
+- **XML Input Validation** – APIs based on XML should ensure that they are protected against attacks such as XEE (XML External Entity), XML signature wrapping, etc., by using secure XML parsing.
 
--**URL Validations** – APIs use input from HTTP requests to determine the response. Attackers can attack any part of an HTTP request (e.g.,  URL, Query String, headers, etc.), and HTTP requests should be validated against any tampering.
+- **URL Validations** – APIs use input from HTTP requests to determine the response. Attackers can attack any part of an HTTP request (e.g.,  URL, Query String, headers, etc.), and HTTP requests should be validated against any tampering.
 
 
 
