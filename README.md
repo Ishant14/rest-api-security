@@ -16,8 +16,7 @@ APIs often self-document information, such as their implementation and internal 
 3. MITM (Man in the middle)
 4. Anti farming 
 5. DOS attack 
-6. Harming the data on the network(Transport Layer) 
-7. API INJECTIONS (XSS AND SQLI) 
+6. API INJECTIONS (XSS AND SQLI) 
 
 
 ### DATA PROTECTION 
@@ -29,11 +28,31 @@ A RESTful API is the way in which a given service can present value to the world
 - ```Authentication``` is used to identify the end user reliably.
 - ```Authorization``` is used to identify resources that an authenticated user can access
 
-**MAN IN THE MIDDLE (MITM)**
+### MAN IN THE MIDDLE (MITM)
 
 A man in the middle (MITM) attack involves an attacker secretly relaying, intercepting or altering communications, including API messages, between two parties to obtain sensitive information.
 
 For example, a perpetrator can act as a man in the middle between an API issuing a session token in an HTTP header and a user’s browser. Intercepting that session token would grant access to the user’s account, which might include personal details, such as credit card information and login credentials
 
+**Prevention :** Encryption and Signatures
 
+```Encryption``` is generally used to avoid unauthorized access to information from those not authorized to view it. Often SSL is used on the internet to encrypt HTTP messages received by browsers or API clients. But SSL only protects requests on the transport layer, and we also require protection data on other layers. In order to further strengthen data security, signatures are used, which ensures that an API request and response is not tampered with in transit. However, a message can be unencrypted but on arrival must be intact (i.e., protected against modification).
+
+Often, encryption and signatures are used in combination; signatures can be encrypted so that only authorized parties can validate them, or the encrypted message can be signed to ensure that data is neither seen nor modified by unwanted parties.
+
+Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL), are cryptographic protocols that provide communications security over a computer network. 
+
+When secured by TLS, connections between a client and a server have one or more of the following properties: 
+
+- The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. 
+- The keys for this symmetric encryption are generated uniquely for each connection and are based on a shared secret negotiated at the start of the session. 
+- The identity of the communicating parties can be authenticated using public-key cryptography. 
+- The connection ensures integrity because each message transmitted includes a message integrity check using a message authentication code to prevent undetected loss or alteration of the data during transmission.
+
+
+### DOS ATTACKS :
+
+In a Denial of Service (DOS) attack, the attacker usually sends excessive messages asking the network or server to authenticate requests that have invalid return addresses. DOS attacks can render a RESTful API into a non-functional state if the right security measures are not taken.
+
+Today, even if your API is not exposed to the public, it still might be accessible by others. This means that REST API security is getting more and more valuable and important. Consider that someone succeeds in making a DOS attack- it means that all the connected clients (partners, apps, mobile devices, and more) will not be able to access your API.
 
