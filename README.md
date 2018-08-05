@@ -17,6 +17,7 @@ APIs often self-document information, such as their implementation and internal 
 4. Anti farming 
 5. DOS attack 
 6. API INJECTIONS (XSS AND SQLI) 
+7. CSRF attack
 
 
 ### DATA PROTECTION 
@@ -55,4 +56,46 @@ When secured by TLS, connections between a client and a server have one or more 
 In a Denial of Service (DOS) attack, the attacker usually sends excessive messages asking the network or server to authenticate requests that have invalid return addresses. DOS attacks can render a RESTful API into a non-functional state if the right security measures are not taken.
 
 Today, even if your API is not exposed to the public, it still might be accessible by others. This means that REST API security is getting more and more valuable and important. Consider that someone succeeds in making a DOS attack- it means that all the connected clients (partners, apps, mobile devices, and more) will not be able to access your API.
+
+**Prevention :** 
+
+A ***web application firewall (WAF)*** applies a set of rules to an HTTP/S conversations between applications. WAFs are commonly used to secure API platforms, as they are able to prevent misuse and exploitation and helps mitigate application-layer DDoS attacks.
+
+In addition, WAFs use a list of regularly-patched, strict signatures and SSL/TLS encryption to block injection attacks and prevent the interception of site traffic in MITM attacks.
+
+
+### API INJECTIONS (XSS AND SQLI) 
+
+In a code injection attack, malicious code is inserted into a vulnerable software program to stage an attack, such as cross site scripting (XSS) and SQL injection (SQLi).
+
+For example, a perpetrator can inject a malicious script into a vulnerable API, i.e., one that fails to perform proper filter input, escape output (FIEO), to launch an XSS attack targeting end users’ browsers. *Additionally, malicious commands could be inserted into an API message, such as an SQL command that deletes tables from a database.*
+
+Any web API requiring parsers or processers is vulnerable to attack. For example, a code generator that includes parsing for JSON code, and doesn’t sanitize input properly, is susceptible to the injection of executable code that runs in the development environment.
+
+**Prevention :** A web application firewall (WAF) is the most commonly used solution for protection from XSS and web application attacks.
+
+WAFs employ different methods to counter attack vectors. In the case of XSS, most will rely on signature based filtering to identify and block malicious requests.
+
+### CSRF attack
+
+Cross site request forgery (CSRF), also known as XSRF, Sea Surf or Session Riding, is an attack vector that tricks a web browser into executing an unwanted action in an application to which a user is logged in.
+
+A successful CSRF attack can be devastating for both the business and user. It can result in damaged client relationships, unauthorized fund transfers, changed passwords and data theft—including stolen session cookies.
+
+CSRFs are typically conducted using malicious social engineering, such as an email or link that tricks the victim into sending a forged request to a server. As the unsuspecting user is authenticated by their application at the time of the attack, it’s impossible to distinguish a legitimate request from a forged one.
+
+
+**Preventipon :**
+
+- Logging off web applications when not in use
+- Securing usernames and passwords
+- Not allowing browsers to remember passwords
+- Avoiding simultaneously browsing while logged into an application
+
+*multiple solutions exist to block malicious traffic and prevent attacks. Among the most common mitigation methods is to generate unique random tokens for every session request or ID. These are subsequently checked and verified by the server. Session requests having either duplicate tokens or missing values are blocked. Alternatively, a request that doesn’t match its session ID token is prevented from reaching an application.*
+
+*Double submission of cookies is another well-known method to block CSRF. Similar to using unique tokens, random tokens are assigned to both a cookie and a request parameter. The server then verifies that the tokens match before granting access to the application.*
+
+
+
 
