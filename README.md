@@ -154,6 +154,62 @@ Validating the end user-supplied data before processing is important, as this ca
 - **URL Validations** – APIs use input from HTTP requests to determine the response. Attackers can attack any part of an HTTP request (e.g.,  URL, Query String, headers, etc.), and HTTP requests should be validated against any tampering.
 
 
+### :+1: 3.  Output Encoding
+
+- **Security headers** : - To make sure the content of a given resources is interpreted correctly by the browser, the server should always send the Content-Type header with the correct Content-Type, and preferably the Content-Type header should include a charset.
+
+The server should also send an ```X-Content-Type-Options: nosniff``` to make sure the browser does not try to detect a different Content-Type than what is actually sent (can lead to XSS).
+
+Additionally the client should send an ```X-Frame-Options: deny``` to protect against drag'n drop clickjacking attacks in older browsers
+
+
+- **JSON encoding** :- 
+A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
+
+*When inserting values into the browser DOM, strongly consider using .value/.innerText/.textContent rather than .innerHTML updates, as this protects against simple DOM XSS attacks.*
+
+- **XML encoding** :- 
+XML should never be built by string concatenation. It should always be constructed using an XML serializer. This ensures that the XML content sent to the browser is parseable and does not contain XML injection. For more information, please see the Web Service Security Cheat Sheet.
+
+### :+1: Cryptography
+
+**Data in transit**
+
+Unless the public information is completely read-only, the use of TLS should be mandated, particularly where credentials, updates, deletions, and any value transactions are performed. The overhead of TLS is negligible on modern hardware, with a minor latency increase that is more than compensated by safety for the end user.
+
+Consider the use of mutually authenticated client-side certificates to provide additional protection for highly privileged web services.
+
+**Data in storage**
+
+Leading practices are recommended as per any web application when it comes to correctly handling stored sensitive or regulated data. For more information, please see OWASP Top 10 2010 - A7 Insecure Cryptographic Storage.
+
+**Message Integrity**
+
+In addition to HTTPS/TLS, JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+
+JWT can not only be used to ensure the message integrity but also authentication of both message sender/receiver.
+The JWT includes the digital signature hash value of the message body to ensure the message integrity during the 
+transmition.
+
+### :+1: HTTP Status Codes
+
+HTTP defines status code. When design REST API, don't just use 200 for success or 404 for error.
+
+Here are some guideline to consider for each REST API status return code. Proper error handle may help to validate the incoming requests and better identify the potential security risks. 
+
+
+- **200 OK** - Response to a successful REST API action. The HTTP method can be GET, POST, PUT, PATCH or DELETE.
+- **400 Bad Request** - The request is malformed, such as message body format error.
+- **401 Unauthorized** - Wrong or no authencation ID/password provided.
+- **403 Forbidden** - It's used when the authentication succeeded but authenticated user doesn't have permission to the request resource.
+- **404 Not Found** - When a non-existent resource is requested.
+- **405 Method Not Allowed** - The error checking for unexpected HTTP method. For example, the RestAPI is expecting HTTP GET, but HTTP PUT is used.
+- **429 Too Many Requests** - The error is used when there may be DOS attack detected or the request is rejected due to rate limiting
+
+**401 vs 403**
+
+- 401 “Unauthorized” really means Unauthenticated, “You need valid credentials for me to respond to this request”.
+- 403 “Forbidden” really means Unauthorized, “I understood your credentials, but so sorry, you’re not allowed!”
 
 
 In a REST API, there are many ways to implement the Authentication and Authorisation. 
