@@ -103,7 +103,7 @@ CSRFs are typically conducted using malicious social engineering, such as an ema
 
 Determining the identity of an end user. In case your API does not have an Authorization/Authentication mechanism, it might lead to misuse of your API, loading the servers and the API itself, making it less responsive to others.
 
-**1.1 Protect HTTP methods**
+- **Protect HTTP methods**
 
 RESTful API often use GET (read), POST (create), PUT (replace/update) and DELETE (to delete a record).
 
@@ -112,7 +112,7 @@ Not all of these are valid choices for every single resource collection, user, o
 For example, if you have an RESTful API for a library, it's not okay to allow anonymous users to DELETE book catalog entries, but it's fine for them to GET a book catalog entry. On the other hand, for the librarian, both of these are valid uses.
 
 
-**1.2 Implement CORS**
+- **1.2 Implement CORS**
 
 Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.[1] A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.[2] Certain "cross-domain" requests, notably Ajax requests, are forbidden by default by the same-origin security policy.
 
