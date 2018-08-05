@@ -103,22 +103,18 @@ CSRFs are typically conducted using malicious social engineering, such as an ema
 
 Determining the identity of an end user. In case your API does not have an Authorization/Authentication mechanism, it might lead to misuse of your API, loading the servers and the API itself, making it less responsive to others.
 
-- **Protect HTTP methods**
-
-RESTful API often use GET (read), POST (create), PUT (replace/update) and DELETE (to delete a record).
-
-Not all of these are valid choices for every single resource collection, user, or action. Make sure the incoming HTTP method is valid for the session token/API key and associated resource collection, action, and record.
+- **Protect HTTP methods** RESTful API often use GET (read), POST (create), PUT (replace/update) and DELETE (to delete a record). Not all of these are valid choices for every single resource collection, user, or action. Make sure the incoming HTTP method is valid for the session token/API key and associated resource collection, action, and record.
 
 For example, if you have an RESTful API for a library, it's not okay to allow anonymous users to DELETE book catalog entries, but it's fine for them to GET a book catalog entry. On the other hand, for the librarian, both of these are valid uses.
 
 
-- **1.2 Implement CORS**
+- **Implement CORS**
 
 Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.[1] A web page may freely embed cross-origin images, stylesheets, scripts, iframes, and videos.[2] Certain "cross-domain" requests, notably Ajax requests, are forbidden by default by the same-origin security policy.
 
 CORS defines a way in which a browser and server can interact to determine whether or not it is safe to allow the cross-origin request.[3] It allows for more freedom and functionality than purely same-origin requests, but is more secure than simply allowing all cross-origin requests.
 
-**1.3 Whitelist allowable methods**
+- **Whitelist allowable methods**
 
 It is common with RESTful services to allow multiple methods for a given URL for different operations on that entity.
 
@@ -126,7 +122,7 @@ For example, a GET request might read the entity while PUT would update an exist
 
 It is important for the service to properly restrict the allowable verbs such that only the allowed verbs would work, while all others would return a proper response code (for example, a 403 Forbidden).
 
-**1.4 Protect privileged actions and sensitive resource collections**
+- ** Protect privileged actions and sensitive resource collections**
 
 Not every user has a right to every web service. This is vital, as you don't want administrative web services to be misused:
 
@@ -134,7 +130,7 @@ Not every user has a right to every web service. This is vital, as you don't wan
 
 The session token or API key should be sent along as a cookie or body parameter to ensure that privileged collections or actions are properly protected from unauthorized use.
 
-**1.5 Protect against cross-site request forgery**
+- **Protect against cross-site request forgery**
 
 For resources exposed by RESTful web services, it's important to make sure any PUT, POST, and DELETE request is protected from Cross Site Request Forgery. Typically one would use a token-based approach.
 
